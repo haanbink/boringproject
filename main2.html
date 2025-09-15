@@ -32,6 +32,7 @@
       font-weight: 500; */
       font-family: "AkzidenzGrotesk", sans-serif;
       font-size: 15px;
+      letter-spacing: 0.04rem;
 
       -webkit-user-select:none;
       -moz-user-select:none;
@@ -281,35 +282,35 @@
         ratio: "16/9",
         thumbnail: "./thmb/sej.jpg",
         name: "lee seokjun",
-        insert: "<a href='https://www.instagram.com/__levenge__' target='_blank'><i>(</i><u>@</u><b>__levenge__</b></a>) is the visual director and photographer for K-pop group Balming Tiger. he leads music video, album art, and branding, shaping the group&#39;s unique visual identity with a blend of analog and digital photography",
+        insert: "<a href='https://www.instagram.com/__levenge__' target='_blank'><i>(</i><u>@</u><b>__levenge__</b></a>) is a film director based in Korea, developing a body of work that explores contemporary visual storytelling through both narrative and experimental film projects",
         caption: ", untitled unt, single-channel video(color, sound), 24min 3s." 
       },{
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "16/9",
         thumbnail: "./thmb/soh.jpg",
         name: "lee sohyun",
-        insert: "<a href='https://www.instagram.com/leesohynn' target='_blank'><i>(</i><u>@</u><b>leesohynn</b></a>) is the visual director and photographer for K-pop group Balming Tiger. he leads music video, album art, and branding, shaping the group&#39;s unique visual identity with a blend of analog and digital photography", 
+        insert: "<a href='https://www.instagram.com/leesohynn' target='_blank'><i>(</i><u>@</u><b>leesohynn</b></a>) studies in Seoul and works across media, exploring visual art, film, and digital expression", 
         caption: ", untitled, single-channel video(b&w, sound), 7min 52s." 
       },{ 
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "4/3",
         thumbnail: "./thmb/jeh.jpg",
         name: "kwon jeheon",
-        insert: "<a href='https://vimeo.com/arnelehor' target='_blank'><i>(</i><u>@</u><b>arnelehor</b></a>) is the visual director and photographer for K-pop group Balming Tiger. he leads music video, album art, and branding, shaping the group&#39;s unique visual identity with a blend of analog and digital photography",
+        insert: "<a href='https://vimeo.com/arnelehor' target='_blank'><i>(</i><u>@</u><b>arnelehor</b></a>) is a student filmmaker creating short films that reflect his personal perspective",
         caption: ", Thin Pilot, single-channel video(color, sound), 4min 25s." 
       },{ 
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "16/9",
         thumbnail: "./thmb/hyj.jpg",
         name: "hwang hyunjin",
-        insert: "<a href='https://www.instagram.com/hwanghimalaya' target='_blank'><i>(</i><u>@</u><b>hwanghimalaya</b></a>) is the visual director and photographer for K-pop group Balming Tiger. he leads music video, album art, and branding, shaping the group&#39;s unique visual identity with a blend of analog and digital photography",
+        insert: "<a href='https://www.instagram.com/hwanghimalaya' target='_blank'><i>(</i><u>@</u><b>hwanghimalaya</b></a>) works as a music video director in Korea",
         caption: ", Tent 1, single-channel video(color, silent), 3min 57s." 
       },{ 
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "16/9",
         thumbnail: "./thmb/suh.jpg",
         name: "lee suho",
-        insert: "<a href='https://www.instagram.com/leesuho.asia' target='_blank'><i>(</i><u>@</u><b>leesuho.asia</b></a>) is the visual director and photographer for K-pop group Balming Tiger. he leads music video, album art, and branding, shaping the group&#39;s unique visual identity with a blend of analog and digital photography",
+        insert: "<a href='https://www.instagram.com/leesuho.asia' target='_blank'><i>(</i><u>@</u><b>leesuho.asia</b></a>) makes electronic music and directs music videos. He is a member of the alternative collective Balming Tiger",
         caption: ", untitled, single-channel video(color, sound), 3min 27s." 
       },{
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
@@ -455,5 +456,58 @@
     // 페이지 처음 로드 + 리사이즈 시 실행
     window.addEventListener("load", renderColumns);
     // window.addEventListener("resize", renderColumns);
+
+
+    function buildAnimatedFragment(rawHTML, onCharReady) {
+      const temp = document.createElement('div');
+      temp.innerHTML = rawHTML;
+
+      function walk(node, parent) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          for (const ch of [...node.textContent]) {
+            onCharReady(() => {
+              const s = document.createElement('b');
+              s.textContent = ch;
+              parent.appendChild(s);
+            });
+          }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const clone = node.cloneNode(false);
+          parent.appendChild(clone);
+          node.childNodes.forEach(child => walk(child, clone));
+        }
+      }
+
+      const container = document.createElement('b');
+      container.className = 'extra';
+      temp.childNodes.forEach(n => walk(n, container));
+      return container;
+    }
+
+    // 토글 핸들러
+    document.addEventListener('click', e => {
+      const word = e.target.closest('.expandable');
+      if (!word) return;
+
+      const existing = word.nextElementSibling;
+      if (existing && existing.classList.contains('extra')) {
+        existing.remove();
+        return;
+      }
+
+      let i = 0;
+      const tasks = [];
+      const container = buildAnimatedFragment('' + word.dataset.insert, fn => tasks.push(fn));
+      word.insertAdjacentElement('afterend', container);
+
+      const step = 30; // ms
+      function next() {
+        if (i < tasks.length) {
+          tasks[i++]();
+          setTimeout(next, step);
+        }
+      }
+      next();
+    });
   </script>
 </body>
