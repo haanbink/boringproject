@@ -207,6 +207,10 @@
        vertical-align: middle;
     } */
     @media (max-width: 430px) {
+      #columns {
+        font-size: 11px;
+        padding: 0 13px 0 13px;
+      }
       .svg-bg-2 {
         display: none;
         right: 200px;
@@ -343,7 +347,7 @@
       container.innerHTML = "";
 
       // 뷰포트에 따라 column 개수 결정
-      const colCount = window.innerWidth <= 430 ? 1 : 5;
+      const colCount = window.innerWidth <= 430 ? 2 : 5;
 
       // column 생성
       const columns = [];
@@ -374,12 +378,14 @@
 
     function placeItem(data, colIndex, columns, usedPositions) {
       const col = columns[colIndex];
-      const step = 90;
-      const maxStep = 6;
+      let step = 90;
+      let maxStep = 6;
 
       let pos;
       if (window.innerWidth <= 430) {
-        pos = 23;
+        step = 60;
+        maxStep = 4;
+        pos = Math.floor(Math.random() * maxStep) * step + 23;
       } else {
         do {
           pos = Math.floor(Math.random() * maxStep) * step + 23;
