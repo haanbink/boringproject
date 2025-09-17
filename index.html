@@ -17,6 +17,9 @@
     body {
         margin: 0;
         overflow-x: hidden;
+        background: #fcfcfa;
+        background-image: url("./back.png");
+        background-size: repeat;
     }
 
     #columns {
@@ -25,7 +28,6 @@
       display: flex;
       gap: 13px;
       height: 100vh;
-      background: #fcfcfa;
       overflow-x: hidden;
 
       /* font-family: "helvetica-neue-lt-pro", sans-serif;
@@ -161,6 +163,7 @@
       transform: translateY(-50%); 
       z-index: 0;
       pointer-events: none;
+      mix-blend-mode: multiply;
     }
 
     .svg-bg-2 {
@@ -170,6 +173,7 @@
       transform: translateY(-50%);
       z-index: 0;
       pointer-events: none;
+      mix-blend-mode: multiply;
     }
 
     .playPause {
@@ -362,14 +366,14 @@
       const maxStep = 6;
 
       let pos;
-      do {
-        if (window.innerWidth <= 430) {
-            pos = 23;
-        }
-        else {
-            pos = Math.floor(Math.random() * maxStep) * step + 23
-        };
-      } while (usedPositions[colIndex].has(pos));
+      if (window.innerWidth <= 430) {
+        pos = 23;
+      } else {
+        do {
+          pos = Math.floor(Math.random() * maxStep) * step + 23;
+        } while (usedPositions[colIndex].has(pos));
+      }
+
       usedPositions[colIndex].add(pos);
 
       const el = document.createElement('div');
