@@ -117,7 +117,10 @@
     .expandable {
       cursor: pointer;
       white-space: pre-wrap;
-      text-decoration: underline;
+    }
+
+    .expandable:hover {
+      opacity: 0.3;
     }
 
     .extra {
@@ -185,6 +188,10 @@
       cursor: pointer;
     }
 
+    .playPause:hover {
+      opacity: 0.3;
+    }
+
     .con-3 {
       width: 100%;
       text-align: right;
@@ -203,6 +210,10 @@
       margin: auto;
     }
 
+    button:hover {
+      opacity: 0.3;
+    }
+
     /* button svg{
        vertical-align: middle;
     } */
@@ -214,6 +225,9 @@
       .svg-bg-2 {
         display: none;
         right: 200px;
+      }
+      .expandable {
+        text-decoration: underline;
       }
     }
 
@@ -363,6 +377,10 @@
 
       // 아이템 배치 후 이벤트 다시 연결
       bindVideoEvents();
+
+      columns.forEach(col => {
+        col.scrollTop = col.scrollHeight;
+      });
     }
 
     function placeItems(columns) {
@@ -407,9 +425,11 @@
             <div class="con-3">
               <button class="fullscreen">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
-                  <defs><style>.st0{fill:none;stroke:#000;stroke-width:1.1px;}</style></defs>
-                  <polyline class="st0" points="7 2 11 2 11 6"/>
-                  <polyline class="st0" points="6 11 2 11 2 7"/>
+                  <defs><style>.st0{fill:none;stroke:#000;stroke-width:1px;}</style></defs>
+                  <polyline class="st0" points="2 5 2 2 5 2"/>
+                  <polyline class="st0" points="8 2 11 2 11 5"/>
+                  <polyline class="st0" points="11 8 11 11 8 11"/>
+                  <polyline class="st0" points="5 11 2 11 2 8"/>
                 </svg>
               </button>
             </div>
