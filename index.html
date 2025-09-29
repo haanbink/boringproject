@@ -110,6 +110,7 @@
       position: relative;
       width: 100%;
       margin: auto;
+      margin-bottom: 23px;
     }
 
     video {
@@ -197,6 +198,14 @@
       opacity: 0.3;
     }
 
+    #mobile{
+      display: none;
+    }
+    
+    #web{
+      display: block;
+    }
+
     .con-3 {
       width: 100%;
       text-align: right;
@@ -226,6 +235,9 @@
       s {
         display : block;
       }
+      .video-container {
+        margin-bottom: 46px;
+      }
       #columns {
         font-size: 11px;
         padding: 0 13px 0 13px;
@@ -237,6 +249,9 @@
       .expandable {
         text-decoration: underline;
       }
+      .control {
+        gap: 0;
+      } 
       button:hover {
         opacity: 1;
       }
@@ -245,6 +260,12 @@
       }
       .expandable:hover {
         opacity: 1;
+      }
+      #mobile{
+        display: block;
+      }
+      #web{
+        display: none;
       }
     }
 
@@ -333,42 +354,42 @@
         ratio: "16/9",
         thumbnail: "./thmb/soh.jpg",
         name: "lee sohyun",
-        insert: "<a href='https://www.instagram.com/leesohynn' target='_blank'><i> (</i><u>@</u><b>leesohynn</b></a>) studies in Seoul and works across media, exploring visual art, film, and digital expression", 
+        insert: "<a href='https://www.instagram.com/leesohynn' target='_blank'><i><s> </s>(</i><u>@</u><b>leesohynn</b></a>) studies in Seoul and works across media, exploring visual art, film, and digital expression", 
         caption: ", untitled, single-channel video(b&w, sound), 7min 52s." 
       },{ 
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "4/3",
         thumbnail: "./thmb/jeh.jpg",
         name: "kwon jeheon",
-        insert: "<a href='https://vimeo.com/arnelehor' target='_blank'><i> (</i><u>@</u><b>arnelehor</b></a>) is a student filmmaker creating short films that reflect his personal perspective",
+        insert: "<a href='https://vimeo.com/arnelehor' target='_blank'><i><s> </s>(</i><u>@</u><b>arnelehor</b></a>) is a student filmmaker creating short films that reflect his personal perspective",
         caption: ", Thin Pilot, single-channel video(color, sound), 4min 25s." 
       },{ 
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "16/9",
         thumbnail: "./thmb/hyj.jpg",
         name: "hwang hyunjin",
-        insert: "<a href='https://www.instagram.com/hwanghimalaya' target='_blank'><i> (</i><u>@</u><b>hwanghimalaya</b></a>) works as a music video director in Korea",
+        insert: "<a href='https://www.instagram.com/hwanghimalaya' target='_blank'><i><s> </s>(</i><u>@</u><b>hwanghimalaya</b></a>) works as a music video director in Korea",
         caption: ", Tent 1, single-channel video(color, silent), 3min 57s." 
       },{ 
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "16/9",
         thumbnail: "./thmb/suh.jpg",
         name: "lee suho",
-        insert: "<a href='https://www.instagram.com/leesuho.asia' target='_blank'><i> (</i><u>@</u><b>leesuho.asia</b></a>) makes electronic music and directs music videos. He is a member of the alternative collective Balming Tiger",
+        insert: "<a href='https://www.instagram.com/leesuho.asia' target='_blank'><i><s> </s>(</i><u>@</u><b>leesuho.asia</b></a>) makes electronic music and directs music videos. He is a member of the alternative collective Balming Tiger",
         caption: ", untitled, single-channel video(color, sound), 3min 27s." 
       },{
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "16/9",
         thumbnail: "./thmb/chh.jpg",
         name: "hong chanhee",
-        insert: "<a href='https://www.instagram.com/seoulthesoloist' target='_blank'><i> (</i><u>@</u><b>seoulthesoloist</b></a>) is the visual director and photographer for K-pop group Balming Tiger. he leads music video, album art, and branding, shaping the group&#39;s unique visual identity with a blend of analog and digital photography",
+        insert: "<a href='https://www.instagram.com/seoulthesoloist' target='_blank'><i><s> </s>(</i><u>@</u><b>seoulthesoloist</b></a>) is the visual director and photographer for K-pop group Balming Tiger. he leads music video, album art, and branding, shaping the group&#39;s unique visual identity with a blend of analog and digital photography",
         caption: ", untitled video, single-channel video(color, sound), 2min 34s." 
       },{
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
         ratio: "16/9",
         thumbnail: "./thmb/jej.jpg",
         name: "jeon jaemin",
-        insert: "<a href='https://kamikacki.com/' target='_blank'><i> (</i><u>@</u><b>kamikacki</b></a>) is a tattoo artist and illustrator based in Seoul, exploring form and texture through his drawings",
+        insert: "<a href='https://kamikacki.com/' target='_blank'><i><s> </s>(</i><u>@</u><b>kamikacki</b></a>) is a tattoo artist and illustrator based in Seoul, exploring form and texture through his drawings",
         caption: ", untitled video, single-channel video(color, sound), 2min 34s." 
       }
     ];
@@ -395,9 +416,9 @@
       // 아이템 배치 후 이벤트 다시 연결
       bindVideoEvents();
 
-      columns.forEach(col => {
-        col.scrollTop = col.scrollHeight;
-      });
+      // columns.forEach(col => {
+      //   col.scrollTop = col.scrollHeight;
+      // });
     }
 
     function placeItems(columns) {
@@ -437,16 +458,17 @@
           <video class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata"></video>
           <div class="control">
             <p class="time">00:00</p>
+            <p id="mobile"></p>
             <p class="playPause">play</p>
-            <p></p>
+            <p id="web"></p>
             <div class="con-3">
               <button class="fullscreen">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
                   <defs><style>.st0{fill:none;stroke:#000;stroke-width:1px;}</style></defs>
-                  <polyline class="st0" points="2 5 2 2 5 2"/>
                   <polyline class="st0" points="8 2 11 2 11 5"/>
-                  <polyline class="st0" points="11 8 11 11 8 11"/>
+                  <polyline class="st0" points="8 5 11 2"/>
                   <polyline class="st0" points="5 11 2 11 2 8"/>
+                  <polyline class="st0" points="2 11 5 8"/>
                 </svg>
               </button>
             </div>
