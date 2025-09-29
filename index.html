@@ -51,6 +51,11 @@
       text-decoration: none;
     }
 
+    s {
+      text-decoration: none;
+      display : none;
+    }
+
     .column {
       z-index: 1;
       flex: 1;
@@ -218,6 +223,9 @@
        vertical-align: middle;
     } */
     @media (max-width: 430px) {
+      s {
+        display : block;
+      }
       #columns {
         font-size: 11px;
         padding: 0 13px 0 13px;
@@ -228,6 +236,15 @@
       }
       .expandable {
         text-decoration: underline;
+      }
+      button:hover {
+        opacity: 1;
+      }
+      .playPause:hover {
+        opacity: 1;
+      }
+      .expandable:hover {
+        opacity: 1;
       }
     }
 
@@ -309,7 +326,7 @@
         ratio: "16/9",
         thumbnail: "./thmb/sej.jpg",
         name: "lee seokjun",
-        insert: "<a href='https://www.instagram.com/__levenge__' target='_blank'><i> (</i><u>@</u><b>__levenge__</b></a>) is a film director based in Korea, developing a body of work that explores contemporary visual storytelling through both narrative and experimental film projects",
+        insert: "<a href='https://www.instagram.com/__levenge__' target='_blank'><i><s> </s>(</i><u>@</u><b>__levenge__</b></a>) is a film director based in Korea, developing a body of work that explores contemporary visual storytelling through both narrative and experimental film projects",
         caption: ", untitled unt, single-channel video(color, sound), 24min 3s." 
       },{
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
