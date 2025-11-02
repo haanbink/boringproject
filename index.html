@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name = "viewport" content="width=device-width, initial-scale=1.0" >
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light only">
   <meta name="supported-color-schemes" content="light">
   <title>boring proj</title>
   <link rel="stylesheet" href="https://use.typekit.net/cor3fci.css">
@@ -15,28 +16,33 @@
         font-style: normal;
     }
 
-    html {
-      color-scheme: light;
+    :root {
+      color-scheme: light only;
+      supported-color-schemes: light;
     }
+
+    html { 
+        color-scheme: light only;
+        background: #fcfcfa;
+    } 
 
     body {
         margin: 0;
         overflow: hidden;
-        background: #fcfcfa;
-        background-image: url("./back.png");
+        background: #fcfcfa !important;
+        background-image: url("./back.png") !important;
         background-size: repeat;
+        color-scheme: light only;
     }
 
     #columns {
       margin: 0;
       padding: 0 24px 0 24px;
       display: flex;
-      gap: 13px;
+      gap: 23px;
       height: 100dvh;
       overflow-x: hidden;
 
-      /* font-family: "helvetica-neue-lt-pro", sans-serif;
-      font-weight: 500; */
       font-family: "AkzidenzGrotesk", sans-serif;
       font-size: 15px;
       letter-spacing: 0.04rem;
@@ -78,7 +84,6 @@
 
     .item {
       position: auto;
-      /* width: calc(100% - 20px); */
       width: 100%;
       box-sizing: border-box;
       /* overflow: hidden; */
@@ -361,6 +366,10 @@
   <div id="columns"></div>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
+    let mediaDetec = 0;
+    if (window.matchMedia('(pointer: fine)').matches) {
+      mediaDetec = 1;
+    }
 
     const items = [
       { 
@@ -389,7 +398,7 @@
         ratio: "16/9",
         thumbnail: "./thmb/hyj.jpg",
         name: "hwang hyunjin",
-        insert: "<a href='https://www.instagram.com/hwanghimalaya' target='_blank'><i><s> </s>(</i><u>@</u><b>hwanghimalaya</b></a>) is a film director based in Seoul. he occasionally appears as an actor in works by other directors.",
+        insert: "<a href='https://www.instagram.com/hwanghimalaya' target='_blank'><i><s> </s>(</i><u>@</u><b>hwanghimalaya</b></a>) is a film director. he is in preparation for his new film project.",
         caption: ", Tent 1, single-channel video, color, sound, 3min 57s." 
       },{ 
         video: "https://player.vimeo.com/progressive_redirect/playback/1079349393/rendition/1080p/file.mp4?loc=external&amp;signature=ed914a46a9b1c0e32d6316f3d2d75e3f121e795ce7af8de86114a3157d5574ec", 
