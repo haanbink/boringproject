@@ -11,7 +11,7 @@
   <style>
     @font-face {
         font-family: "AkzidenzGrotesk";
-        src: url('./WY2.ttf') format('truetype');
+        src: url('./AkzidenzGroteskRegular.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
     }
@@ -396,7 +396,7 @@
         caption: ", Tent 1, single-channel video, color, sound, 3min 57s." 
       },{ 
         video: "https://customer-0f48rgzttap5d3hh.cloudflarestream.com/fdb20ac15bd9b5e7bbc08ac8bb66753e/manifest/video.m3u8", 
-        ratio: "16/9",
+        ratio: "13/9",
         thumbnail: "./thmb/suh.jpg",
         name: "lee suho",
         insert: "<a href='https://www.instagram.com/leesuho.asia' target='_blank'><i><s> </s>(</i><u>@</u><b>leesuho.asia</b></a>) makes electronic music and directs music videos. he is a producer of the alternative K-pop group Balming Tiger.",
@@ -487,8 +487,7 @@
         pos = Math.floor(Math.random() * maxStep) * step + 23;
       } else {
         step = window.innerWidth <= 1024? 60 : 60;
-        maxStep = window.innerWidth <= 1024? 4 : 6;
-
+        maxStep = window.innerWidth <= 1024? 6 : 9;
         if (hasExtraItem) {
           // 추가 아이템이 있는 컬럼은 maxStep을 3으로 제한
           maxStep = 3;
