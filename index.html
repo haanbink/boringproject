@@ -17,14 +17,8 @@
     }
 
     :root {
-      color-scheme: light only;
-      supported-color-schemes: light;
+      color-scheme: only light;
     }
-
-    html { 
-        color-scheme: light only;
-        background: #fcfcfa;
-    } 
 
     body {
         margin: 0;
@@ -32,7 +26,7 @@
         background: #fcfcfa !important;
         background-image: url("./back.png") !important;
         background-size: repeat;
-        color-scheme: light only;
+        color-scheme: only light;
     }
 
     #columns {
@@ -429,7 +423,7 @@
       container.innerHTML = "";
 
       // 뷰포트에 따라 column 개수 결정
-      const colCount = window.innerWidth <= 480 ? 2 : 5;
+      const colCount = window.innerWidth <= 480 ? 2 : window.innerWidth <= 1024 ? 3 : 5;
 
       // column 생성
       const columns = [];
@@ -456,28 +450,54 @@
       const usedPositions = Array.from({ length: colCount }, () => new Set());
       const shuffledItems = [...items].sort(() => Math.random() - 0.5);
 
+      // 아이템 개수를 컬럼 수로 나눈 나머지 계산
+      const remainder = items.length % colCount;
+
+      // 먼저 원래 순서대로 배치
       shuffledItems.forEach((data, index) => {
-        const colIndex = index % colCount; // 골고루 분배
-        placeItem(data, colIndex, columns, usedPositions);
+        const colIndex = index % colCount;
+        const hasExtraItem = colIndex < remainder; // 0, 1, ... remainder-1번 컬럼
+        placeItem(data, colIndex, columns, usedPositions, hasExtraItem);
       });
+
+      // 배치 완료 후 컬럼 순서만 섞기
+      const columnIndices = Array.from({ length: colCount }, (_, i) => i);
+      for (let i = columnIndices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)); // 0부터 i 사이 무작위 인덱스
+        [columnIndices[i], columnIndices[j]] = [columnIndices[j], columnIndices[i]]; // swap
+      }
+
+      const shuffledIndices = columnIndices;
+      
+      const container = document.getElementById('columns');
+      const columnArray = Array.from(columns);
+      container.innerHTML = "";
+      shuffledIndices.forEach(i => container.appendChild(columnArray[i]));
     }
 
-    function placeItem(data, colIndex, columns, usedPositions) {
+    function placeItem(data, colIndex, columns, usedPositions, hasExtraItem) {
       const col = columns[colIndex];
-      let step = 90;
-      let maxStep = 8;
+      let step;
+      let maxStep;
       let pos;
+      
       if (window.innerWidth <= 480) {
         step = 60;
         maxStep = 4;
         pos = Math.floor(Math.random() * maxStep) * step + 23;
-      } else if (colIndex == 0 || colIndex == 1) {
-        maxStep = 3;
-        do {
-          pos = Math.floor(Math.random() * maxStep) * step + 23;
-        } while (usedPositions[colIndex].has(pos));
       } else {
-        pos = Math.floor(Math.random() * maxStep) * step + 23;
+        step = window.innerWidth <= 1024? 60 : 90;
+        maxStep = window.innerWidth <= 1024? 6 : 8;
+
+        if (hasExtraItem) {
+          // 추가 아이템이 있는 컬럼은 maxStep을 3으로 제한
+          maxStep = 3;
+          do {
+            pos = Math.floor(Math.random() * maxStep) * step + 23;
+          } while (usedPositions[colIndex].has(pos));
+        } else {
+          pos = Math.floor(Math.random() * maxStep) * step + 23;
+        }
       }
 
       usedPositions[colIndex].add(pos);
