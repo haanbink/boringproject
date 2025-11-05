@@ -548,6 +548,10 @@
               // Google Apps Script Web App URL을 여기에 입력하세요
               const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyItoeYlsJobBgdiJl0oIQa8P-js8dJx3B3Q_HvY6vN5WuSr298LcXEazfgPExKnHO4GA/exec';
               
+              const now = new Date();
+              const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+              const kstString = kstTime.toISOString().replace('T', ' ').substring(0, 19);
+              
               const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -556,7 +560,7 @@
                 },
                 body: JSON.stringify({
                   email: email,
-                  timestamp: new Date().toISOString()
+                  timestamp: kstString
                 })
               });
               
