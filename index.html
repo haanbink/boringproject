@@ -10,10 +10,28 @@
   <link rel="stylesheet" href="https://use.typekit.net/cor3fci.css">
   <style>
     @font-face {
+        font-family: 'ChosunIlboMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+        font-weight: normal;
+        font-display: swap;
+    }
+    @font-face {
         font-family: "AkzidenzGrotesk";
         src: url('./AkzidenzGroteskRegular.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
+    }
+    @font-face {
+        font-family: 'JoseonBoldMyongjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunKm.woff') format('woff');
+        font-weight: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'JoseonShinmyeongjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.1/ChosunSm.woff') format('woff');
+        font-weight: normal;
+        font-display: swap;
     }
 
     :root {
@@ -37,8 +55,7 @@
       height: 100dvh;
       overflow-x: hidden;
 
-      font-family: "AkzidenzGrotesk", sans-serif;
-      font-size: 15px;
+      font-family: 'ChosunIlboMyungjo', serif;
       letter-spacing: 0.04rem;
 
       -webkit-user-select:none;
@@ -48,7 +65,6 @@
     }
 
     b {
-      /* //b is boring */
       font-weight: normal;
     }
 
@@ -67,7 +83,7 @@
       display: flex;
       flex-direction: column;
 
-      overflow-y: auto; /* 각 column에 스크롤 */
+      overflow-y: auto;
       scrollbar-width: none;
       position: relative;
     }
@@ -80,20 +96,18 @@
       position: auto;
       width: 100%;
       box-sizing: border-box;
-      /* overflow: hidden; */
 
       transform: opacity(0);
       transition: transform 1s ease;
 
       color: black;
       font-size: 1rem;
-      line-height: 1.33;
-
+      line-height: 1.2;
     }
 
     .item img {
       width: 100%;
-      height: auto; /* 비율 유지 */
+      height: auto;
       display: block;
     }
 
@@ -102,7 +116,7 @@
     }
 
     .control {
-      margin-top: 1px;
+      margin-top: 6px;
       width: 100%;
       height: auto;
       display: grid;
@@ -117,8 +131,57 @@
       margin-bottom: 23px;
     }
 
+    .email-container {
+      position: relative;
+      width: 100%;
+      margin: auto;
+      margin-bottom: 23px;
+    }
+
+    .email-form-wrapper {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid black;
+    }
+
+    .email-container input {
+      flex: 1;
+      background-color : transparent;
+      padding: 10px;
+      box-sizing: border-box;
+      border: none;
+      font-family: 'ChosunIlboMyungjo', serif;
+      font-size: 1rem;
+
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+      outline: none;
+    }
+
+    .email-container button.submit {
+      font-family: 'ChosunIlboMyungjo', serif;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      width: 100%;
+      text-align: left;
+    }
+
+    .email-container button.submit:hover {
+      opacity: 0.3;
+    }
+
+    .email-container .message {
+      font-size: 1rem;
+      color: black;
+    }
+
     video {
       width: 100%;
+      display: block;
       aspect-ratio: 16 / 9;
       object-fit: cover;
       cursor: pointer;
@@ -171,30 +234,6 @@
       text-decoration-line: none;
     }
 
-    .svg-bg-1 {
-      position: absolute;
-      left: -21px;
-      top: calc(50% + 40px); 
-      transform: translateY(-50%); 
-      z-index: 0;
-      pointer-events: none;
-      mix-blend-mode: multiply;
-
-      display:none;
-    }
-
-    .svg-bg-2 {
-      position: absolute;
-      right: -21px;
-      top: calc(50% + 40px);
-      transform: translateY(-50%);
-      z-index: 0;
-      pointer-events: none;
-      mix-blend-mode: multiply;
-
-      display:none;
-    }
-
     .playPause {
       cursor: pointer;
     }
@@ -203,11 +242,11 @@
       opacity: 0.3;
     }
 
-    #mobile{
+    #mobile {
       display: none;
     }
     
-    #web{
+    #web {
       display: block;
     }
 
@@ -221,11 +260,11 @@
       height: 100%;
 
       background: inherit; 
-      border:none; 
-      box-shadow:none; 
-      border-radius:0; 
-      padding:0; 
-      cursor:pointer;
+      border: none; 
+      box-shadow: none; 
+      border-radius: 0; 
+      padding: 0; 
+      cursor: pointer;
       margin: auto;
     }
 
@@ -233,9 +272,6 @@
       opacity: 0.3;
     }
 
-    /* button svg{
-       vertical-align: middle;
-    } */
     @media (max-width: 480px) {
       body {
         touch-action: none;
@@ -244,7 +280,7 @@
         display : inline;
       }
       .control {
-        margin-top: 2px;
+        margin-top: 6px;
       }
       .video-container {
         margin-bottom: 46px;
@@ -257,13 +293,24 @@
         padding: 0 12px 0 12px;
         gap: 12px;
       }
-      .svg-bg-2 {
-        display: none;
-        right: 200px;
-      }
       .control {
         gap: 0;
-      } 
+      }
+      .email-container {
+        margin-bottom: 46px;
+      }
+      
+      .email-container input {
+        font-size: 0.9rem;
+      }
+
+      .email-container button.submit {
+        font-size: 0.9rem;
+      }
+
+      .email-container .message {
+        font-size: 0.9rem;
+      }
     }
 
     @media (hover: none) and (pointer: coarse) {
@@ -272,6 +319,12 @@
       }
       button {
         display: none;
+      }
+      .email-container button.submit {
+        display: block;
+      }
+      .email-container button.submit:hover {
+        opacity: 1;
       }
       button:hover {
         opacity: 1;
@@ -282,10 +335,10 @@
       .expandable:hover {
         opacity: 1;
       }
-      #mobile{
+      #mobile {
         display: block;
       }
-      #web{
+      #web {
         display: none;
       }
     }
@@ -293,71 +346,6 @@
   </style>
 </head>
 <body>
-  <svg class="svg-bg-1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="250" viewBox="0 0 40 250">
-    <defs>
-      <style>
-        .st {
-          stroke: #000;
-          stroke-width: 0.5px;
-          fill: none;
-        }
-
-        .f05 {
-          fill: #0c0c0c;
-        }
-
-        .f25 {
-          fill: #3f3f3f;
-        }
-
-        .f50 {
-          fill: #7f7f7f;
-        }
-
-        .f75 {
-          fill: #bfbfbf;
-        }
-
-        .f95 {
-          fill: #f2f2f2;
-        }
-        
-        .f100 {
-          fill: #ffffff;
-        }
-
-      </style>
-    </defs>
-    <g>
-      <line class="st" x1="20" y1="10" x2="20" y2="72"/>
-      <line class="st" x1="35" y1="40" x2="5" y2="40"/>
-      <circle class="st" cx="20" cy="40" r="6"/>
-    </g>
-    <rect x="10" y="100" width="20" height="20"/>
-    <rect class="f05" x="10" y="120" width="20" height="20"/>
-    <rect class="f25" x="10" y="140" width="20" height="20"/>
-    <rect class="f50" x="10" y="160" width="20" height="20"/>
-    <rect class="f75" x="10" y="180" width="20" height="20"/>
-    <rect class="f95" x="10" y="200" width="20" height="20"/>
-    <rect class="f100" x="10" y="220" width="20" height="20"/>
-    <g>
-      <rect class="st" x="10" y="100" width="20" height="140"/>
-    </g>
-    <line class="st" x1="10" y1="120" x2="30" y2="120"/>
-    <line class="st" x1="10" y1="140" x2="30" y2="140"/>
-    <line class="st" x1="10" y1="160" x2="30" y2="160"/>
-    <line class="st" x1="10" y1="180" x2="30" y2="180"/>
-    <line class="st" x1="10" y1="200" x2="30" y2="200"/>
-    <line class="st" x1="10" y1="220" x2="30" y2="220"/>
-  </svg>
-  <svg class="svg-bg-2" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="250" viewBox="0 0 40 250">
-    <g>
-      <line class="st" x1="20" y1="10" x2="20" y2="72"/>
-      <line class="st" x1="35" y1="40" x2="5" y2="40"/>
-      <circle class="st" cx="20" cy="40" r="6"/>
-    </g>
-  </svg>
-
   <div id="columns"></div>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
@@ -416,6 +404,11 @@
         name: "jeon jaemin",
         insert: "<a href='https://www.instagram.com/kamikacki/' target='_blank'><i><s> </s>(</i><u>@</u><b>kamikacki</b></a>) works with drawing at the core, branching into tattoo, illustration, and video. his drawings convey observed forms and textures from damaged things.",
         caption: ", <i>Good Shot</i>, single-channel video, color, sound, 2min 34s." 
+      },{
+        type: "email",
+        name: "leave your email to be notified when our next project launches.",
+        insert: "",
+        caption: ""
       }
     ];
 
@@ -423,10 +416,8 @@
       const container = document.getElementById('columns');
       container.innerHTML = "";
 
-      // 뷰포트에 따라 column 개수 결정
       const colCount = window.innerWidth <= 480 ? 2 : window.innerWidth <= 1024 ? 3 : 5;
 
-      // column 생성
       const columns = [];
       for (let i = 0; i < colCount; i++) {
         const col = document.createElement('div');
@@ -435,15 +426,9 @@
         columns.push(col);
       }
 
-      // 아이템 배치
       placeItems(columns);
-
-      // 아이템 배치 후 이벤트 다시 연결
       bindVideoEvents();
-
-      // columns.forEach(col => {
-      //   col.scrollTop = col.scrollHeight;
-      // });
+      bindEmailEvents();
     }
 
     function placeItems(columns) {
@@ -451,21 +436,18 @@
       const usedPositions = Array.from({ length: colCount }, () => new Set());
       const shuffledItems = [...items].sort(() => Math.random() - 0.5);
 
-      // 아이템 개수를 컬럼 수로 나눈 나머지 계산
       const remainder = items.length % colCount;
 
-      // 먼저 원래 순서대로 배치
       shuffledItems.forEach((data, index) => {
         const colIndex = index % colCount;
-        const hasExtraItem = colIndex < remainder; // 0, 1, ... remainder-1번 컬럼
+        const hasExtraItem = colIndex < remainder;
         placeItem(data, colIndex, columns, usedPositions, hasExtraItem);
       });
 
-      // 배치 완료 후 컬럼 순서만 섞기
       const columnIndices = Array.from({ length: colCount }, (_, i) => i);
       for (let i = columnIndices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1)); // 0부터 i 사이 무작위 인덱스
-        [columnIndices[i], columnIndices[j]] = [columnIndices[j], columnIndices[i]]; // swap
+        const j = Math.floor(Math.random() * (i + 1));
+        [columnIndices[i], columnIndices[j]] = [columnIndices[j], columnIndices[i]];
       }
 
       const shuffledIndices = columnIndices;
@@ -490,7 +472,6 @@
         step = window.innerWidth <= 1024? 60 : 60;
         maxStep = window.innerWidth <= 1024? 6 : 9;
         if (hasExtraItem) {
-          // 추가 아이템이 있는 컬럼은 maxStep을 3으로 제한
           maxStep = 3;
           do {
             pos = Math.floor(Math.random() * maxStep) * step + 23;
@@ -505,31 +486,100 @@
       const el = document.createElement('div');
       el.className = 'item';
       el.style.marginTop = pos + 'px';
-      el.innerHTML = `
-        <div class="video-container">
-          <video class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata"></video>
-          <div class="control">
-            <p class="time">00:00</p>
-            <p id="mobile"></p>
-            <p class="playPause">play</p>
-            <p id="web"></p>
-            <div class="con-3">
-              <button class="fullscreen">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
-                  <defs><style>.st0{fill:none;stroke:#000;stroke-width:1px;}</style></defs>
-                  <polyline class="st0" points="8 2 11 2 11 5"/>
-                  <polyline class="st0" points="5 11 2 11 2 8"/>
-                </svg>
-              </button>
+      
+      if (data.type === 'email') {
+        el.innerHTML = `
+          <div class="email-container">
+            <div class="email-form-wrapper">
+              <input type="email" class="email-input" placeholder="typing.." />
             </div>
+            <div class="control">
+              <p class="time">00:00</p>
+              <p id="mobile"></p>
+              <button class="submit">send</button>
+              <p id="web"></p>
+            </div>
+            <p class="description">${data.name}</p>
+            <div class="message"></div>
           </div>
-          <p><span class="expandable" data-insert="${data.insert}">${data.name}</span>${data.caption}</p>
-        </div>
-      `;
+        `;
+      } else {
+        el.innerHTML = `
+          <div class="video-container">
+            <video class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata"></video>
+            <div class="control">
+              <p class="time">00:00</p>
+              <p id="mobile"></p>
+              <p class="playPause">play</p>
+              <p id="web"></p>
+              <div class="con-3">
+                <button class="fullscreen">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                    <defs><style>.st0{fill:none;stroke:#000;stroke-width:1px;}</style></defs>
+                    <polyline class="st0" points="8 2 11 2 11 5"/>
+                    <polyline class="st0" points="5 11 2 11 2 8"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <p><span class="expandable" data-insert="${data.insert}">${data.name}</span>${data.caption}</p>
+          </div>
+        `;
+      }
       col.appendChild(el);
     }
 
-    // 비디오 이벤트 바인딩
+    function bindEmailEvents() {
+      document.querySelectorAll('.email-container').forEach(container => {
+        const input = container.querySelector('.email-input');
+        const submit = container.querySelector('.submit');
+        const message = container.querySelector('.message');
+
+        submit.addEventListener('click', async () => {
+          const email = input.value.trim();
+          if (email && email.includes('@')) {
+            submit.disabled = true;
+            submit.textContent = 'sending..';
+            
+            try {
+              // Google Apps Script Web App URL을 여기에 입력하세요
+              const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyItoeYlsJobBgdiJl0oIQa8P-js8dJx3B3Q_HvY6vN5WuSr298LcXEazfgPExKnHO4GA/exec';
+              
+              const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  email: email,
+                  timestamp: new Date().toISOString()
+                })
+              });
+              
+              message.textContent = 'thank you! your email has been submitted.';
+              input.value = '';
+              
+            } catch (error) {
+              console.error('Error:', error);
+              message.textContent = 'error submitting email. please try again.';
+            } finally {
+              submit.disabled = false;
+              submit.textContent = 'send';
+            }
+          } else {
+            message.textContent = 'please enter a valid email address.';
+          }
+        });
+
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            submit.click();
+          }
+        });
+      });
+    }
+
     function bindVideoEvents() {
       document.querySelectorAll('.video-container').forEach(container => {
         const video = container.querySelector('.video');
@@ -592,10 +642,7 @@
       });
     }
 
-    // 페이지 처음 로드 + 리사이즈 시 실행
     window.addEventListener("load", renderColumns);
-    // window.addEventListener("resize", renderColumns);
-
 
     function buildAnimatedFragment(rawHTML, onCharReady) {
       const temp = document.createElement('div');
@@ -623,7 +670,6 @@
       return container;
     }
 
-    // 토글 핸들러
     document.addEventListener('click', e => {
       const word = e.target.closest('.expandable');
       if (!word) return;
@@ -639,7 +685,7 @@
       const container = buildAnimatedFragment('' + word.dataset.insert, fn => tasks.push(fn));
       word.insertAdjacentElement('afterend', container);
 
-      const step = 30; // ms
+      const step = 30;
       function next() {
         if (i < tasks.length) {
           tasks[i++]();
@@ -650,4 +696,4 @@
     });
   </script>
 </body>
-
+</html>
