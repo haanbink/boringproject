@@ -386,7 +386,7 @@
         thumbnail: "./thmb/hyj.jpg",
         name: "hwang hyunjin",
         insert: "<a href='https://www.instagram.com/hwanghimalaya' target='_blank'><i><s> </s>(</i><u>@</u><b>hwanghimalaya</b></a>) is a film director. he is in preparation for his new film project.",
-        caption: ", <i>Tent 1</i>, single-channel video, color, sound, 3min 57s." 
+        caption: ", <i>DAY 1</i>, single-channel video, color, sound, 3min 57s." 
       },{ 
         video: "https://customer-0f48rgzttap5d3hh.cloudflarestream.com/fdb20ac15bd9b5e7bbc08ac8bb66753e/manifest/video.m3u8", 
         ratio: "13/9",
@@ -399,7 +399,7 @@
         ratio: "16/9",
         thumbnail: "./thmb/chh.jpg",
         name: "hong chanhee",
-        insert: "<a href='https://www.instagram.com/seoulthesoloist' target='_blank'><i><s> </s>(</i><u>@</u><b>seoulthesoloist</b></a>) is the visual director and photographer of the alternative K-pop group Balming Tiger. he works on their album art, and branding, shaping the group&#39;s unique visual identity.",
+        insert: "<a href='https://www.instagram.com/seoulthesoloist' target='_blank'><i><s> </s>(</i><u>@</u><b>seoulthesoloist</b></a>) is a visual artist based in Seoul who works across various media, including photography, design, and video.",
         caption: ", <i>Boring Project</i>, single-channel video, color, sound, 8min 35s." 
       },{
         video: "https://customer-0f48rgzttap5d3hh.cloudflarestream.com/bcbf4bd4a474b9912654c06730dc96b7/manifest/video.m3u8", 
@@ -410,7 +410,7 @@
         caption: ", <i>Good Shot</i>, single-channel video, color, sound, 2min 34s." 
       },{
         type: "email",
-        name: "leave your email to be notified when our next project launches.",
+        name: "leave your email to be notified when our next project is out.",
         insert: "",
         caption: ""
       }
@@ -473,10 +473,10 @@
         maxStep = 4;
         pos = Math.floor(Math.random() * maxStep) * step + 23;
       } else {
-        step = window.innerWidth <= 1024? 60 : 60;
-        maxStep = window.innerWidth <= 1024? 6 : 9;
+        step = 60;
+        maxStep = window.innerWidth <= 1024? 6 : window.innerHeight <= 800? 9 : 12;
         if (hasExtraItem) {
-          maxStep = 3;
+          maxStep = window.innerHeight <= 800? 3 : 4;
           do {
             pos = Math.floor(Math.random() * maxStep) * step + 23;
           } while (usedPositions[colIndex].has(pos));
@@ -503,8 +503,7 @@
               <button class="submit">send</button>
               <p id="web"></p>
             </div>
-            <p class="description">${data.name}</p>
-            <div class="message"></div>
+            <div class="message">${data.name}</div>
           </div>
         `;
       } else {
@@ -561,7 +560,7 @@
                 })
               });
               
-              message.textContent = 'thank you! your email has been submitted.';
+              message.textContent = 'your email has been submitted.';
               input.value = '';
               
             } catch (error) {
