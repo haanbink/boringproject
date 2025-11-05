@@ -474,9 +474,9 @@
         pos = Math.floor(Math.random() * maxStep) * step + 23;
       } else {
         step = 60;
-        maxStep = window.innerWidth <= 1024? 6 : window.innerHeight <= 800? 9 : 12;
+        maxStep = window.innerWidth <= 1024? 6 : window.innerHeight <= 800? 9 : Math.floor(window.innerHeight/90) + 1;
         if (hasExtraItem) {
-          maxStep = window.innerHeight <= 800? 3 : 4;
+          maxStep = window.innerHeight <= 800? 3 : Math.floor(window.innerHeight/240);
           do {
             pos = Math.floor(Math.random() * maxStep) * step + 23;
           } while (usedPositions[colIndex].has(pos));
