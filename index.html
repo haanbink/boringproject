@@ -505,7 +505,7 @@
             <div class="control">
               <p class="bytes">00:00</p>
               <p id="mobile"></p>
-              <button class="submit">send</button>
+              <button class="submit">sent</button>
               <p id="web"></p>
             </div>
             <div class="message">${data.name}</div>
@@ -685,9 +685,10 @@
         });
         
         let lastTime = 0;
+        let isSeeking = false;
 
         video.addEventListener('timeupdate', () => {
-          lastTime = video.currentTime;
+          if (!isSeeking) lastTime = video.currentTime;
         });
 
         const preventSeek = () => {
@@ -701,8 +702,14 @@
           }
         };
 
-        video.addEventListener('seeking', preventSeek);
-        video.addEventListener('seeked', preventSeek);
+        video.addEventListener('seeking', () => {
+          isSeeking = true;
+          preventSeek();
+        });
+        video.addEventListener('seeked', () => {
+          preventSeek();
+          isSeeking = false;
+        });
       });
     }
 
