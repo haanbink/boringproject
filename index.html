@@ -684,12 +684,25 @@
           }
         });
         
-        video.addEventListener('seeking', () => {
-          // 사용자가 타임라인을 이동하려 하면 원래 시점으로 되돌림
-          if (Math.abs(video.currentTime - (video.lastTime || 0)) > 0.5) {
-            video.currentTime = video.lastTime || 0;
-          }
+        let lastTime = 0;
+
+        video.addEventListener('timeupdate', () => {
+          lastTime = video.currentTime;
         });
+
+        const preventSeek = () => {
+          const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+          const isFullscreen = !!document.fullscreenElement;
+
+          if (isMobile && isFullscreen) {
+            if (Math.abs(video.currentTime - lastTime) > 0.5) {
+              video.currentTime = lastTime;
+            }
+          }
+        };
+
+        video.addEventListener('seeking', preventSeek);
+        video.addEventListener('seeked', preventSeek);
       });
     }
 
