@@ -692,20 +692,45 @@
           }
         });
         
-        let isSeekingBlocked = false;
+        let lastTime = 0;
+        let isSeeking = false;
 
-        video.addEventListener('seeking', () => {
-          const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-          const isFullscreen = !!document.fullscreenElement;
+        video.addEventListener('timeupdate', () => {
+          if (!isSeeking) lastTime = video.currentTime;
+        });
 
-          if (isMobile && isFullscreen && !isSeekingBlocked) {
-            const diff = Math.abs(video.currentTime - (video.lastTime || 0));
-            if (diff > 0.01) {
-              isSeekingBlocked = true;
-              video.currentTime = video.lastTime || 0;
-              setTimeout(() => { isSeekingBlocked = false; }, 0); // 이벤트 큐 뒤로 보내 재진입 방지
+        function isMobileDevice() {
+          const ua = navigator.userAgent;
+          const byUA = /Android|iPhone|iPad|iPod/i.test(ua);
+          const byMedia = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+          // 아이패드가 "Macintosh"로 표시되는 경우 보완
+          const isTouchMac = /Macintosh/i.test(ua) && 'ontouchend' in document;
+          return byUA || byMedia || isTouchMac;
+        }
+
+        function isFullscreenVideo(videoEl) {
+          return !!document.fullscreenElement || !!videoEl.webkitDisplayingFullscreen;
+        }
+
+        function preventSeek() {
+          const isMobile = isMobileDevice();
+          const isFullscreen = isFullscreenVideo(video);
+
+          if (isMobile && isFullscreen) {
+            if (Math.abs(video.currentTime - lastTime) > 0.3) {
+              video.currentTime = lastTime;
             }
           }
+        }
+
+        video.addEventListener('seeking', () => {
+          isSeeking = true;
+          preventSeek();
+        });
+
+        video.addEventListener('seeked', () => {
+          preventSeek();
+          isSeeking = false;
         });
 
       });
