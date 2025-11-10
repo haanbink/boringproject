@@ -659,6 +659,7 @@
 
         video.addEventListener('timeupdate', () => {
           timeDisplay.textContent = `${formatTime(video.currentTime)}`;
+          video.lastTime = video.currentTime;
         });
 
         video.addEventListener('pause', () => {
@@ -680,6 +681,13 @@
             container.requestFullscreen();
           } else {
             document.exitFullscreen();
+          }
+        });
+        
+        video.addEventListener('seeking', () => {
+          // 사용자가 타임라인을 이동하려 하면 원래 시점으로 되돌림
+          if (Math.abs(video.currentTime - (video.lastTime || 0)) > 0.5) {
+            video.currentTime = video.lastTime || 0;
           }
         });
       });
@@ -740,3 +748,4 @@
   </script>
 </body>
 </html>
+
