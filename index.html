@@ -33,11 +33,36 @@
         font-display: swap;
     }
     @font-face {
-    font-family: 'KbizHanmaumMyungjo';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KBIZHanmaumMyungjo.woff') format('woff');
-    font-weight: normal;
-    font-display: swap;
-}
+        font-family: 'KbizHanmaumMyungjo';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KBIZHanmaumMyungjo.woff') format('woff');
+        font-weight: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'Soonbatang';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/SunBatang-Light.woff') format('woff');
+        font-weight: 300;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'Soonbatang';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/SunBatang-Medium.woff') format('woff');
+        font-weight: 500;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'Hangyore';
+        src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/hani/Hankc/Hankc.woff2') format('woff2'),
+            url('//cdn.jsdelivr.net/korean-webfonts/1/corps/hani/Hankc/Hankc.woff') format('woff');
+        font-weight: 400;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'BookendBatang';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/TTBookendBatangR.woff2') format('woff2');
+        font-weight: 400;
+        font-display: swap;
+    }
 
     :root {
       color-scheme: only light;
@@ -59,9 +84,6 @@
       gap: 23px;
       height: 100dvh;
       overflow-x: hidden;
-
-      font-family: 'JoseonShinmyeongjo', serif;
-      letter-spacing: 0.07rem;
 
       -webkit-user-select:none;
       -moz-user-select:none;
@@ -105,9 +127,11 @@
       transform: opacity(0);
       transition: transform 1s ease;
 
+      font-family: 'JoseonShinmyeongjo', serif;
+      letter-spacing: 0.04rem;
       color: black;
-      font-size: 1rem;
-      line-height: 1.2;
+      font-size: 1.2rem;
+      line-height: 1.33;
     }
 
     .item img {
@@ -121,7 +145,7 @@
     }
 
     .control {
-      margin-top: 6px;
+      margin-top: 7px;
       width: 100%;
       height: auto;
       display: grid;
@@ -156,8 +180,8 @@
       box-sizing: border-box;
       border: none;
       font-family: 'JoseonShinmyeongjo', serif;
-      font-size: 1rem;
-      letter-spacing: 0.07rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.04rem;
 
       -webkit-user-select: text;
       -moz-user-select: text;
@@ -168,14 +192,14 @@
 
     .email-container button.submit {
       font-family: 'JoseonShinmyeongjo', serif;
-      font-size: 1rem;
+      font-size: 1.2rem;
       border: none;
       cursor: pointer;
       white-space: nowrap;
 
       width: 100%;
       text-align: left;
-      letter-spacing: 0.07rem;
+      letter-spacing: 0.04rem;
     }
 
     .email-container button.submit:hover {
@@ -183,9 +207,9 @@
     }
 
     .email-container .message {
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: black;
-      letter-spacing: 0.07rem;
+      letter-spacing: 0.04rem;
     }
 
     video {
@@ -295,10 +319,9 @@
         margin-bottom: 46px;
       }
       .item {
-        font-size: 0.9rem;
+        font-size: 1rem;
       }
       #columns {
-        font-size: 11px;
         padding: 0;
         gap: 12px;
       }
@@ -309,13 +332,13 @@
         margin-bottom: 46px;
       }
       .email-container input {
-        font-size: 0.9rem;
+        font-size: 1rem;
       }
       .email-container button.submit {
-        font-size: 0.9rem;
+        font-size: 1rem;
       }
       .email-container .message {
-        font-size: 0.9rem;
+        font-size: 1rem;
       }
     }
 
@@ -791,7 +814,4 @@
   </script>
 </body>
 </html>
-
-
-
 
