@@ -12,54 +12,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./android-chrome-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-  <link rel="stylesheet" href="https://use.typekit.net/cor3fci.css">
   <style>
-    @font-face {
-        font-family: 'ChosunIlboMyungjo';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
-        font-weight: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "AkzidenzGrotesk";
-        src: url('./AkzidenzGroteskRegular.otf') format('opentype');
-        font-weight: normal;
-        font-style: normal;
-    }
-    @font-face {
-        font-family: 'JoseonShinmyeongjo';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.1/ChosunSm.woff') format('woff');
-        font-weight: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: 'KbizHanmaumMyungjo';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KBIZHanmaumMyungjo.woff') format('woff');
-        font-weight: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: 'Soonbatang';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/SunBatang-Light.woff') format('woff');
-        font-weight: 300;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: 'Soonbatang';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/SunBatang-Medium.woff') format('woff');
-        font-weight: 500;
-        font-display: swap;
-    }
     @font-face {
         font-family: 'Hangyore';
         src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/hani/Hankc/Hankc.woff2') format('woff2'),
             url('//cdn.jsdelivr.net/korean-webfonts/1/corps/hani/Hankc/Hankc.woff') format('woff');
-        font-weight: 400;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: 'BookendBatang';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/TTBookendBatangR.woff2') format('woff2');
         font-weight: 400;
         font-display: swap;
     }
@@ -79,11 +36,13 @@
 
     #columns {
       margin: 0;
-      padding: 0;
+      padding: 0 24px 0 24px;
       display: flex;
       gap: 23px;
       height: 100dvh;
       overflow-x: hidden;
+
+      font-family: 'Hangyore', serif;
 
       -webkit-user-select:none;
       -moz-user-select:none;
@@ -127,11 +86,10 @@
       transform: opacity(0);
       transition: transform 1s ease;
 
-      font-family: 'JoseonShinmyeongjo', serif;
-      letter-spacing: 0.04rem;
       color: black;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       line-height: 1.33;
+      letter-spacing: 0.04rem;
     }
 
     .item img {
@@ -145,7 +103,7 @@
     }
 
     .control {
-      margin-top: 7px;
+      margin-top: 9px;
       width: 100%;
       height: auto;
       display: grid;
@@ -179,8 +137,8 @@
       padding: 9px 5px 9px 5px;
       box-sizing: border-box;
       border: none;
-      font-family: 'JoseonShinmyeongjo', serif;
-      font-size: 1.2rem;
+      font-family: 'Hangyore', serif;
+      font-size: 1.3rem;
       letter-spacing: 0.04rem;
 
       -webkit-user-select: text;
@@ -191,8 +149,8 @@
     }
 
     .email-container button.submit {
-      font-family: 'JoseonShinmyeongjo', serif;
-      font-size: 1.2rem;
+      font-family: 'Hangyore', serif;
+      font-size: 1.3rem;
       border: none;
       cursor: pointer;
       white-space: nowrap;
@@ -207,7 +165,7 @@
     }
 
     .email-container .message {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: black;
       letter-spacing: 0.04rem;
     }
@@ -289,14 +247,14 @@
     }
 
     button {
-      width: 1rem;
+      width: 1.1rem;
       height: 100%;
 
       background: inherit; 
       border: none; 
       box-shadow: none; 
       border-radius: 0; 
-      padding: 0; 
+      padding: 0 0 2px 0; 
       cursor: pointer;
       margin: auto;
     }
@@ -313,7 +271,7 @@
         display : inline;
       }
       .control {
-        margin-top: 6px;
+        margin-top: 7px;
       }
       .video-container {
         margin-bottom: 46px;
@@ -322,7 +280,8 @@
         font-size: 1rem;
       }
       #columns {
-        padding: 0;
+        font-size: 11px;
+        padding: 0 12px 0 12px;
         gap: 12px;
       }
       .control {
@@ -436,7 +395,7 @@
         thumbnail: "./thmb/chh.jpg",
         name: "hong chanhee",
         insert: "<a href='https://www.instagram.com/seoulthesoloist' target='_blank'><i><s> </s>(</i><u>@</u><b>seoulthesoloist</b></a>) is a visual artist based in Seoul who works across various media, including photography, design, and video.",
-        caption: ", <i>Boring Project</i>, single-channel video, color, sound, 8min 35s." 
+        caption: ", <i>Roll of Portra with My Father</i>, single-channel video, color, sound, 8min 35s." 
       },{
         video: "https://customer-0f48rgzttap5d3hh.cloudflarestream.com/bcbf4bd4a474b9912654c06730dc96b7/manifest/video.m3u8", 
         ratio: "16/9",
@@ -510,7 +469,7 @@
         pos = Math.floor(Math.random() * maxStep) * step + 23;
       } else {
         step = 60;
-        maxStep = window.innerWidth <= 1024? 6 : window.innerHeight <= 800? 9 : Math.floor(window.innerHeight/90) + 1;
+        maxStep = window.innerWidth <= 1024? 6 : window.innerHeight <= 800? 9 : Math.floor(window.innerHeight/90);
         if (hasExtraItem) {
           maxStep = window.innerHeight <= 800? 3 : Math.floor(window.innerHeight/240);
           do {
@@ -555,7 +514,7 @@
                 <button class="fullscreen">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
                     <defs><style>.st0{fill:none;stroke:#555;stroke-width:1px;}</style></defs>
-                    <polyline class="st0" points="8 2 11 2 11 5"/>
+                    <polyline class="st0" points="8 1 11 1 11 4"/>
                     <polyline class="st0" points="5 11 2 11 2 8"/>
                   </svg>
                 </button>
@@ -577,10 +536,14 @@
 
         const updateBytes = () => {
           const length = input.value.length;
-          // 2자리로 포맷 (예: 03, 12)
-          const formatted = String(length).padStart(2, '0');
-          // 00:00 형식으로 표시 (분:초 형태라면)
-          bytes.textContent = `00:${formatted}`;
+
+          const mBts = Math.floor(length / 100);
+          const sBts = length % 100;
+
+          const mm = String(mBts).padStart(2, '0');
+          const ss = String(sBts).padStart(2, '0');
+
+          bytes.textContent = `${mm}:${ss}`;
         };
 
         input.addEventListener('input', updateBytes);
@@ -593,11 +556,8 @@
 
           function isValidEmail(email) {
             if (!email) return false;
-            // @가 정확히 하나 있어야 함, 첫 글자나 마지막 글자가 아니어야 함
             if (atIndex <= 0 || atIndex !== lastAtIndex || atIndex === email.length - 1) return false;
-            // @ 바로 뒤에 .이 오면 안 됨
             if (email[atIndex + 1] === '.') return false;
-            // 도메인 부분에 최소 하나의 .이 있어야 함, 맨 앞/맨 뒤 . 금지
             const domain = email.slice(atIndex + 1);
             if (!domain.includes('.') || domain.startsWith('.') || domain.endsWith('.')) return false;
             return true;
@@ -814,4 +774,3 @@
   </script>
 </body>
 </html>
-
