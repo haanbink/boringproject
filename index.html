@@ -589,7 +589,7 @@
 
               message.textContent = 'your email was received successfully.';
               input.value = '';
-              updateBytes(); // 글자 수 초기화
+              updateBytes();
 
             } catch (error) {
               console.error('Error:', error);
@@ -686,7 +686,6 @@
           const ua = navigator.userAgent;
           const byUA = /Android|iPhone|iPad|iPod/i.test(ua);
           const byMedia = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-          // 아이패드가 "Macintosh"로 표시되는 경우 보완
           const isTouchMac = /Macintosh/i.test(ua) && 'ontouchend' in document;
           return byUA || byMedia || isTouchMac;
         }
@@ -772,7 +771,8 @@
       next();
     });
   </script>
-	<script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script>
+	<!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script> -->
 </body>
 </html>
+
 
