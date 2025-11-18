@@ -37,6 +37,8 @@
 
     :root {
       color-scheme: only light;
+      --base-size: 16px;
+      font-size: var(--base-size);
     }
 
     body {
@@ -290,7 +292,6 @@
         font-size: 1rem;
       }
       #columns {
-        font-size: 11px;
         padding: 0 12px 0 12px;
         gap: 12px;
       }
@@ -362,6 +363,21 @@
     if (window.matchMedia('(pointer: fine)').matches) {
       mediaDetec = 1;
     }
+
+    function updateFontVar() {
+      const w = window.innerWidth;
+
+      if (w < 480) {
+        document.documentElement.style.setProperty("--base-size", "16px");
+      } else if (w < 1600) {
+        document.documentElement.style.setProperty("--base-size", "14px");
+      } else {
+        document.documentElement.style.setProperty("--base-size", "16px");
+      }
+    }
+
+    updateFontVar();
+    window.addEventListener("resize", updateFontVar);
 
     const items = [
       { 
@@ -478,7 +494,7 @@
         maxStep = 4;
         pos = Math.floor(Math.random() * maxStep) * step + 23;
       } else {
-        step = 60;
+        step = window.innerWidth <= 1600? 40 : 60;
         maxStep = window.innerWidth <= 1024? 6 : window.innerHeight <= 800? 9 : Math.floor(window.innerHeight/90);
         if (hasExtraItem) {
           maxStep = window.innerHeight <= 960? 3 : Math.floor(window.innerHeight/240) - 1;
@@ -783,7 +799,3 @@
 	<!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script> -->
 </body>
 </html>
-
-
-
-
