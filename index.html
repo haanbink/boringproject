@@ -494,8 +494,8 @@
         maxStep = 4;
         pos = Math.floor(Math.random() * maxStep) * step + 23;
       } else {
-        step = window.innerWidth <= 1600? 40 : 60;
-        maxStep = window.innerWidth <= 1024? 6 : window.innerHeight <= 800? 9 : Math.floor(window.innerHeight/90);
+        step = window.innerWidth <= 1600? 45 : 60;
+        maxStep = window.innerWidth <= 1024? 6 : window.innerHeight <= 800? 9 : Math.floor(window.innerHeight/90)+1;
         if (hasExtraItem) {
           maxStep = window.innerHeight <= 720? 3 : Math.floor(window.innerHeight/240);
           do {
