@@ -19,7 +19,6 @@
   <meta property="og:locale" content="ko_KR">
   <meta property="og:title" content="이응픽쳐스">
   <meta property="og:description" content="ㅇ">
-  <meta property="og:image" content="./ogthumb.jpg">
   <meta property="og:url" content="https://iungpictures.com/">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -652,6 +651,7 @@
             const hls = new Hls();
             hls.loadSource(video.src);
             hls.attachMedia(video);
+            video.hlsInstance = hls;
           }
         }
 
@@ -662,7 +662,10 @@
         }
 
         function togglePlayPause() {
-          if (video.paused) {
+          if (video.paused || video.ended) {
+            if (video.ended) {
+              video.currentTime = 0;
+            }
             video.play();
             playPause.textContent = 'pause';
           } else {
@@ -670,6 +673,10 @@
             playPause.textContent = 'play';
           }
         }
+
+        video.addEventListener('ended', () => {
+          playPause.textContent = 'play';
+        });
 
         video.addEventListener('click', togglePlayPause);
         playPause.addEventListener('click', togglePlayPause);
@@ -800,6 +807,3 @@
 	<!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script> -->
 </body>
 </html>
-
-
-
