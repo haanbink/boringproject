@@ -130,6 +130,41 @@
       margin-bottom: 23px;
     }
 
+    .video-container:fullscreen .control {
+      display: none !important;
+    }
+
+    .video-container:fullscreen p {
+      display: none !important;
+    }
+
+    /* 웹킷 브라우저(Safari, 이전 Chrome) 지원 */
+    .video-container:-webkit-full-screen .control {
+      display: none !important;
+    }
+
+    .video-container:-webkit-full-screen p {
+      display: none !important;
+    }
+
+    /* Firefox 지원 */
+    .video-container:-moz-full-screen .control {
+      display: none !important;
+    }
+
+    .video-container:-moz-full-screen p {
+      display: none !important;
+    }
+
+    /* MS Edge 지원 */
+    .video-container:-ms-fullscreen .control {
+      display: none !important;
+    }
+
+    .video-container:-ms-fullscreen p {
+      display: none !important;
+    }
+
     .email-container {
       position: relative;
       width: 100%;
@@ -402,7 +437,7 @@
         insert: "<a href='https://vimeo.com/arnelehor' target='_blank'><i><s> </s>(</i><u>@</u><b>arnelehor</b></a>), a filmmaker, has a brother who is two years younger than him. his main interest lies in treating film as a language.",
         caption: ", <i>Thin Pilot</i>, single-channel video, color, sound, 4min 25s." 
       },{ 
-        video: "https://customer-0f48rgzttap5d3hh.cloudflarestream.com/2397aabc188a95fd464b1e4468a7269a/manifest/video.m3u8",
+        video: "https://customer-0f48rgzttap5d3hh.cloudflarestream.com/f36a96502d9890bfd2b1b8dee86764fc/manifest/video.m3u8",
         ratio: "16/9",
         thumbnail: "./thmb/hyj.jpg",
         name: "hwang hyunjin",
@@ -414,7 +449,7 @@
         thumbnail: "./thmb/suh.jpg",
         name: "lee suho",
         insert: "<a href='https://www.instagram.com/leesuho.asia' target='_blank'><i><s> </s>(</i><u>@</u><b>leesuho.asia</b></a>) makes electronic music and directs videos. he is the sponsor of this project—iungpictures.",
-        caption: ", <i>1000 Exploding Suns,</i> single-channel video, color, sound, 3min 21s." 
+        caption: ", <i>1000 Exploding Suns,</i> single-channel video, color, sound, 3min 5s." 
       },{
         video: "https://customer-0f48rgzttap5d3hh.cloudflarestream.com/198117a5054a369eeab30a350527bd9a/manifest/video.m3u8", 
         ratio: "16/9",
@@ -428,7 +463,7 @@
         thumbnail: "./thmb/jej.jpg",
         name: "jeon jaemin",
         insert: "<a href='https://www.instagram.com/kamikacki/' target='_blank'><i><s> </s>(</i><u>@</u><b>kamikacki</b></a>) works with drawing at the core, branching into tattoo, illustration, and video. his drawings convey observed forms and textures from damaged things.",
-        caption: ", <i>Good Shot</i>, single-channel video, color, sound, 2min 34s." 
+        caption: ", <i>Good Shot</i>, single-channel video, color, sound, 2min 8s." 
       },{
         type: "email",
         name: "leave your email to be notified when our next project is out.",
@@ -665,19 +700,36 @@
           if (video.ended || (video.duration - video.currentTime < 0.1)) {
             allowSeek = true;
 
-            if (video.hlsInstance) {
-              video.hlsInstance.stopLoad();
-              video.hlsInstance.startLoad(0);
+            if (video.hlsInstance && video.src.endsWith('.m3u8')) {
+              video.hlsInstance.destroy();
+              const hls = new Hls();
+              hls.loadSource(video.src);
+              hls.attachMedia(video);
+              video.hlsInstance = hls;
+              
+              hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                video.currentTime = 0;
+                video.play().catch(err => console.log('Play failed:', err));
+                playPause.textContent = 'pause';
+              });
+              
+              lastTime = 0;
+              return;
+            } else {
+              video.currentTime = 0;
+              video.load(); //
             }
 
-            video.currentTime = 0;
             lastTime = 0;
           }
           
           if (video.paused) {
-            video.play().catch(err => {
-              console.log('Play failed:', err);
-            });
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(err => {
+                console.log('Play failed:', err);
+              });
+            }
             playPause.textContent = 'pause';
           } else {
             video.pause();
