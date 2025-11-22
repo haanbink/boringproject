@@ -664,6 +664,12 @@
         function togglePlayPause() {
           if (video.ended || (video.duration - video.currentTime < 0.1)) {
             allowSeek = true;
+
+            if (video.hlsInstance) {
+              video.hlsInstance.stopLoad();
+              video.hlsInstance.startLoad(0);
+            }
+
             video.currentTime = 0;
             lastTime = 0;
           }
@@ -818,4 +824,3 @@
 	<!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script> -->
 </body>
 </html>
-
