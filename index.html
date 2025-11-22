@@ -681,14 +681,48 @@
         const timeDisplay = container.querySelector('.time');
         const fullscreen = container.querySelector('.fullscreen');
 
-        if (video.src.endsWith('.m3u8') && !video.canPlayType('application/vnd.apple.mpegurl')) {
-          if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(video.src);
-            hls.attachMedia(video);
-            video.hlsInstance = hls;
+        function initHls() {
+          if (video.src.endsWith('.m3u8') && !video.canPlayType('application/vnd.apple.mpegurl')) {
+            if (Hls.isSupported()) {
+              if (video.hlsInstance) {
+                video.hlsInstance.destroy();
+              }
+              
+              const hls = new Hls({
+                enableWorker: true,
+                maxBufferLength: 30,
+                maxMaxBufferLength: 600
+              });
+              
+              hls.loadSource(video.src);
+              hls.attachMedia(video);
+              video.hlsInstance = hls;
+              
+              hls.on(Hls.Events.ERROR, (event, data) => {
+                console.error('HLS error:', data);
+                
+                if (data.fatal) {
+                  switch(data.type) {
+                    case Hls.ErrorTypes.NETWORK_ERROR:
+                      console.log('Network error, trying to recover...');
+                      hls.startLoad();
+                      break;
+                    case Hls.ErrorTypes.MEDIA_ERROR:
+                      console.log('Media error, trying to recover...');
+                      hls.recoverMediaError();
+                      break;
+                    default:
+                      console.log('Fatal error, reinitializing HLS...');
+                      setTimeout(() => initHls(), 100);
+                      break;
+                  }
+                }
+              });
+            }
           }
         }
+
+        initHls();
 
         function formatTime(seconds) {
           const m = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -701,23 +735,25 @@
             allowSeek = true;
 
             if (video.hlsInstance && video.src.endsWith('.m3u8')) {
-              video.hlsInstance.destroy();
-              const hls = new Hls();
-              hls.loadSource(video.src);
-              hls.attachMedia(video);
-              video.hlsInstance = hls;
+              const hls = video.hlsInstance;
               
-              hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              hls.on(Hls.Events.MANIFEST_PARSED, function onParsed() {
+                hls.off(Hls.Events.MANIFEST_PARSED, onParsed);
                 video.currentTime = 0;
                 video.play().catch(err => console.log('Play failed:', err));
                 playPause.textContent = 'pause';
               });
               
+              hls.stopLoad();
+              hls.detachMedia();
+              hls.loadSource(video.src);
+              hls.attachMedia(video);
+              
               lastTime = 0;
               return;
             } else {
               video.currentTime = 0;
-              video.load(); //
+              video.load();
             }
 
             lastTime = 0;
@@ -800,6 +836,12 @@
             return;
           }
 
+           const isEndToStart = (video.ended || (video.duration - lastTime < 0.5)) && (video.currentTime < 0.5);
+  
+          if (isEndToStart) {
+            return;
+          }
+
           if (isMobile && isFullscreen) {
             if (Math.abs(video.currentTime - lastTime) > 0.3) {
               video.currentTime = lastTime;
@@ -876,4 +918,3 @@
 	<!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script> -->
 </body>
 </html>
-
