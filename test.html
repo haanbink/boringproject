@@ -798,9 +798,10 @@
         playPause.addEventListener('click', togglePlayPause);
 
         video.addEventListener('timeupdate', () => {
-          const remaining = video.duration - video.currentTime;
-          const displayTime = remaining <= 0.5 ? video.duration : video.currentTime;
+          const fixedDuration = parseFloat(video.dataset.duration);
+          const displayTime = fixedDuration ? Math.min(video.currentTime, fixedDuration) : video.currentTime;
           timeDisplay.textContent = `${formatTime(displayTime)}`;
+          
           if (!isSeeking) lastTime = video.currentTime;
           video.lastTime = video.currentTime;
         });
