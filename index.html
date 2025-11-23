@@ -819,7 +819,9 @@
             if (v !== video && !v.paused) v.pause();
           });
 
-          if (video.paused) video.play();
+          if (video.paused || video.ended) {
+            togglePlayPause();
+          }
 
           if (!document.fullscreenElement) {
             container.requestFullscreen();
