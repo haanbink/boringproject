@@ -420,6 +420,7 @@
         ratio: "16/9",
         thumbnail: "./thmb/sej.jpg",
         name: "lee seokjun",
+        duration: 219,
         insert: "<a href='https://www.instagram.com/__levenge__' target='_blank'><i><s> </s>(</i><u>@</u><b>__levenge__</b></a>) is a documentary director, yet his practice spans beyond a single genre. his work remains consistently centered on the human being.",
         caption: ", <i>untitled</i>, single-channel video, color, sound, 3min 39s." 
       },{
@@ -427,6 +428,7 @@
         ratio: "16/9",
         thumbnail: "./thmb/soh.jpg",
         name: "lee sohyun",
+        duration: 246,
         insert: "<a href='https://www.instagram.com/leesohynn' target='_blank'><i><s> </s>(</i><u>@</u><b>leesohynn</b></a>) is studying film at school. this summer she picked up her camera as she visited the Mona Lisa.", 
         caption: ", <i>a</i>, single-channel video, color, sound, 4min 6s." 
       },{ 
@@ -434,6 +436,7 @@
         ratio: "4/3",
         thumbnail: "./thmb/jeh.jpg",
         name: "kwon jeheon",
+        duration: 265,
         insert: "<a href='https://vimeo.com/arnelehor' target='_blank'><i><s> </s>(</i><u>@</u><b>arnelehor</b></a>), a filmmaker, has a brother who is two years younger than him. his main interest lies in treating film as a language.",
         caption: ", <i>Thin Pilot</i>, single-channel video, color, sound, 4min 24s." 
       },{ 
@@ -441,6 +444,7 @@
         ratio: "16/9",
         thumbnail: "./thmb/hyj.jpg",
         name: "hwang hyunjin",
+        duration: 237,
         insert: "<a href='https://www.instagram.com/hwanghimalaya' target='_blank'><i><s> </s>(</i><u>@</u><b>hwanghimalaya</b></a>) is a film director. he is in preparation for his new film project.",
         caption: ", <i>day 1</i>, single-channel video, color, sound, 3min 57s." 
       },{ 
@@ -448,6 +452,7 @@
         ratio: "13/9",
         thumbnail: "./thmb/suh.jpg",
         name: "lee suho",
+        duration: 185,
         insert: "<a href='https://www.instagram.com/leesuho.asia' target='_blank'><i><s> </s>(</i><u>@</u><b>leesuho.asia</b></a>) makes electronic music and directs videos. he is the sponsor of this project—iungpictures.",
         caption: ", <i>1000 Exploding Suns,</i> single-channel video, color, sound, 3min 5s." 
       },{
@@ -455,6 +460,7 @@
         ratio: "16/9",
         thumbnail: "./thmb/chh.jpg",
         name: "hong chanhee",
+        duration: 395,
         insert: "<a href='https://www.instagram.com/seoulthesoloist' target='_blank'><i><s> </s>(</i><u>@</u><b>seoulthesoloist</b></a>) is a visual artist based in Seoul who works across various media, including photography, design, and video.",
         caption: ", <i>Roll of Portra with My Father</i>, single-channel video, color, sound, 6min 34s." 
       },{
@@ -462,6 +468,7 @@
         ratio: "16/9",
         thumbnail: "./thmb/jej.jpg",
         name: "jeon jaemin",
+        duration: 128,
         insert: "<a href='https://www.instagram.com/kamikacki/' target='_blank'><i><s> </s>(</i><u>@</u><b>kamikacki</b></a>) works with drawing at the core, branching into tattoo, illustration, and video. his drawings convey observed forms and textures from damaged things.",
         caption: ", <i>Good Shot</i>, single-channel video, color, sound, 2min 8s." 
       },{
@@ -565,7 +572,7 @@
       } else {
         el.innerHTML = `
           <div class="video-container">
-            <video class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata"></video>
+            <video class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata" data-duration="${data.duration}"></video>
             <div class="control">
               <p class="time">00:00</p>
               <p id="mobile"></p>
@@ -775,13 +782,27 @@
 
         video.addEventListener('ended', () => {
           playPause.textContent = 'play';
+
+          if (document.fullscreenElement) {
+            document.exitFullscreen();
+          } else if (document.webkitFullscreenElement) {
+            document.webkitExitFullscreen();
+          } else if (document.mozFullScreenElement) {
+            document.mozCancelFullScreen();
+          } else if (document.msFullscreenElement) {
+            document.msExitFullscreen();
+          }
         });
 
         video.addEventListener('click', togglePlayPause);
         playPause.addEventListener('click', togglePlayPause);
 
         video.addEventListener('timeupdate', () => {
-          timeDisplay.textContent = `${formatTime(video.currentTime)}`;
+          const fixedDuration = parseFloat(video.dataset.duration);
+          const displayTime = fixedDuration ? Math.min(video.currentTime, fixedDuration) : video.currentTime;
+          timeDisplay.textContent = `${formatTime(displayTime)}`;
+          
+          if (!isSeeking) lastTime = video.currentTime;
           video.lastTime = video.currentTime;
         });
 
@@ -918,4 +939,3 @@
   <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script>
 </body>
 </html>
-
