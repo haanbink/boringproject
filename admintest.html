@@ -819,31 +819,8 @@
             if (v !== video && !v.paused) v.pause();
           });
 
-          if (video.ended) {
-            allowSeek = true;
-            
-            if (video.hlsInstance && video.src.endsWith('.m3u8')) {
-              const hls = video.hlsInstance;
-              
-              hls.on(Hls.Events.MANIFEST_PARSED, function onParsed() {
-                hls.off(Hls.Events.MANIFEST_PARSED, onParsed);
-                video.currentTime = 0;
-                video.play();
-              });
-              
-              hls.stopLoad();
-              hls.detachMedia();
-              hls.loadSource(video.src);
-              hls.attachMedia(video);
-            } else {
-              video.currentTime = 0;
-              video.load();
-              video.play();
-            }
-            
-            lastTime = 0;
-          } else if (video.paused) {
-            video.play();
+          if (video.paused || video.ended) {
+            togglePlayPause();
           }
 
           if (!document.fullscreenElement) {
