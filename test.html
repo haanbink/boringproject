@@ -791,7 +791,9 @@
         playPause.addEventListener('click', togglePlayPause);
 
         video.addEventListener('timeupdate', () => {
-          timeDisplay.textContent = `${formatTime(video.currentTime)}`;
+          const remaining = video.duration - video.currentTime;
+          const displayTime = remaining <= 0.5 ? video.duration : video.currentTime;
+          timeDisplay.textContent = `${formatTime(displayTime)}`;
           video.lastTime = video.currentTime;
         });
 
@@ -925,6 +927,5 @@
       next();
     });
   </script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script>
 </body>
 </html>
