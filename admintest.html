@@ -360,7 +360,7 @@
       const isTouchMac = /Macintosh/i.test(ua) && 'ontouchend' in document;
       return byUA || byMedia || isTouchMac;
     }
-
+    
     if (isMobileDevice()) {
       const style = document.createElement('style');
       style.textContent = `
@@ -572,7 +572,7 @@
       } else {
         el.innerHTML = `
           <div class="video-container">
-            <video class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata" data-duration="${data.duration}"></video>
+            <video id="target" class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata" data-duration="${data.duration}"></video>
             <div class="control">
               <p class="time">00:00</p>
               <p id="mobile"></p>
@@ -886,7 +886,10 @@
     }
 
     window.addEventListener("load", renderColumns);
-
+      
+    const target = document.getElementById('target');
+    target.addEventListener('contextmenu', e => e.preventDefault());
+      
     function buildAnimatedFragment(rawHTML, onCharReady) {
       const temp = document.createElement('div');
       temp.innerHTML = rawHTML;
