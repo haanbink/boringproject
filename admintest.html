@@ -572,7 +572,7 @@
       } else {
         el.innerHTML = `
           <div class="video-container">
-            <video id="target" class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata" data-duration="${data.duration}"></video>
+            <video class="video" style="aspect-ratio: ${data.ratio};" poster="${data.thumbnail}" src="${data.video}" type="video/mp4" preload="metadata" data-duration="${data.duration}"></video>
             <div class="control">
               <p class="time">00:00</p>
               <p id="mobile"></p>
@@ -939,6 +939,10 @@
         }
       }
       next();
+    });
+
+    document.querySelectorAll('video').forEach(v => {
+      v.addEventListener('contextmenu', e => e.preventDefault());
     });
   </script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script>
