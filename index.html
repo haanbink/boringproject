@@ -688,7 +688,9 @@
         const playPause = container.querySelector('.playPause');
         const timeDisplay = container.querySelector('.time');
         const fullscreen = container.querySelector('.fullscreen');
-
+          
+        video.addEventListener('contextmenu', e => e.preventDefault());
+          
         function initHls() {
           if (video.src.endsWith('.m3u8') && !video.canPlayType('application/vnd.apple.mpegurl')) {
             if (Hls.isSupported()) {
@@ -942,3 +944,4 @@
   <script defer src="https://cloud.umami.is/script.js" data-website-id="ba5204ae-e6c9-4c2e-8ddd-01cd01ff4a08"></script>
 </body>
 </html>
+
